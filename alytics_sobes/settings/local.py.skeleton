@@ -1,0 +1,14 @@
+# -*- coding: utf-8 -*-
+
+SECRET_KEY = '.................'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'alytics_db',
+        'USER': 'alytics_user',
+        'PASSWORD': '1234',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
