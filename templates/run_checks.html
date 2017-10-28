@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Я — потомок Чингискханама…{% endblock %}
+
+{% block content %}
+  <h2>Джамшуд какуляма надо!</h2>
+  <form method="post">
+    {% csrf_token %}
+    <p>Будет произведена проверка всех наборов данных.</p>
+    <p><input type="submit" value="Запустить проверку"></p>
+  </form>
+  <p><a href="{% url "datasets_list" %}">К списку</a></p>
+{% endblock %}

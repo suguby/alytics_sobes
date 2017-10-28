@@ -1,4 +1,4 @@
-{% extends "ravshan/base.html" %}
+{% extends "base.html" %}
 
 {% block title %}Прювэт!{% endblock %}
 
@@ -6,24 +6,31 @@
   <h2>Масквищами по-русскима надама разгаваривась! Панаехали тут!</h2>
   <table border="1">
   <tr>
-    <th>Размер набора</th>
-    <th>Дата загрузки набора данных</th>
+    <th align="left">Набор данных</th>
+    <th>Дата загрузки</th>
     <th>Дата последней обработки</th>
     <th>Были исключения?</th>
     <th>&nbsp;</th>
   </tr>
   {% for obj in object_list %}
-  <tr>
-    <th>{{ obj.data_in.len }}</th>
-    <td>{{ obj.created_at }}</td>
-    <td>{{ obj.modified_at }}</td>
-    <td>{{ obj.exceptions }}</td>
-    <td><a href="{% url "dataset_delete" obj.id %}">удалить</a></td>
-  </tr>
+    <tr>
+      <td>{{ obj.data_in|truncatechars:64 }}</td>
+      <td>{{ obj.created_at }}</td>
+      <td>{{ obj.modified_at }}</td>
+      <td>{{ obj.exceptions }}</td>
+      <td><a href="{% url "dataset_delete" obj.id %}">удалить</a></td>
+    </tr>
   {% endfor %}
     <tr>
       <td colspan="5"><a href="{% url "dataset_upload" %}">Добавить</a></td>
     </tr>
   </table>
+
+  <p>
+  <form action="{% url "run_checks" %}" method="get">
+    {% csrf_token %}
+    <input type="submit" value="Запустить проверку наборов">
+  </form>
+  </p>
 
 {% endblock %}
