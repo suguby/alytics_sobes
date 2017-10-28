@@ -1,0 +1,13 @@
+{% extends "ravshan/base.html" %}
+
+{% block title %}Жельбере-гугульме!{% endblock %}
+
+{% block content %}
+  <h2>Кошькама самоубилься сама. Равшан.</h2>
+  <form method="post">
+    {% csrf_token %}
+    <p>Вы уверены что хотите удалить {{ object.data_in }} ?</p>
+    <p><input type="submit" value="Удалить набор данных"></p>
+  </form>
+  <p><a href="{% url "datasets_list" %}">К списку</a></p>
+{% endblock %}

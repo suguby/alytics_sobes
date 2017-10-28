@@ -1,0 +1,29 @@
+{% extends "ravshan/base.html" %}
+
+{% block title %}Прювэт!{% endblock %}
+
+{% block content %}
+  <h2>Масквищами по-русскима надама разгаваривась! Панаехали тут!</h2>
+  <table border="1">
+  <tr>
+    <th>Размер набора</th>
+    <th>Дата загрузки набора данных</th>
+    <th>Дата последней обработки</th>
+    <th>Были исключения?</th>
+    <th>&nbsp;</th>
+  </tr>
+  {% for obj in object_list %}
+  <tr>
+    <th>{{ obj.data_in.len }}</th>
+    <td>{{ obj.created_at }}</td>
+    <td>{{ obj.modified_at }}</td>
+    <td>{{ obj.exceptions }}</td>
+    <td><a href="{% url "dataset_delete" obj.id %}">удалить</a></td>
+  </tr>
+  {% endfor %}
+    <tr>
+      <td colspan="5"><a href="{% url "dataset_upload" %}">Добавить</a></td>
+    </tr>
+  </table>
+
+{% endblock %}

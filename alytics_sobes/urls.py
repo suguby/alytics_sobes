@@ -16,6 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from ravshan.views import DataSetsList, DataSetUpload, DataSetDelete
+
 urlpatterns = [
+    url(r'^$', DataSetsList.as_view(), name='datasets_list'),
+    url(r'^upload/$', DataSetUpload.as_view(), name='dataset_upload'),
+    url(r'^delete/(?P<pk>[0-9]*)$', DataSetDelete.as_view(), name='dataset_delete'),
+
     url(r'^admin/', admin.site.urls),
 ]
